@@ -6,6 +6,7 @@ import './App.css'
 import Header from './components/Header'
 import MainContent from './components/MainContent'
 import Footer from './components/Footer'
+import UserProfile from './components/UserProfile'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -33,6 +34,18 @@ function App() {
          <MainContent />
          <Footer />
       </div>
+       <div>
+            <UserProfile 
+                name="Alice" 
+                age="25" 
+                bio="Loves hiking and photography" 
+            />
+            <UserProfile 
+                name="John" 
+                age="30" 
+                bio="A passionate software developer" 
+            />
+        </div>
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
