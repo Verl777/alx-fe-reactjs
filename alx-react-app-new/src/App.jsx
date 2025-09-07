@@ -7,6 +7,7 @@ import Header from './components/Header'
 import MainContent from './components/MainContent'
 import Footer from './components/Footer'
 import UserProfile from './components/UserProfile'
+import Counter from './components/Counter'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -46,6 +47,10 @@ function App() {
                 bio="A passionate software developer" 
             />
         </div>
+         <div>
+      <h1 style={{ textAlign: 'center' }}>React Counter App</h1>
+      <Counter />
+    </div>
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
