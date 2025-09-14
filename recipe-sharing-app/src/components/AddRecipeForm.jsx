@@ -2,15 +2,15 @@ import { useState } from 'react';
 import { useRecipeStore } from './recipeStore';
 
 const AddRecipeForm = () => {
-  const addRecipe = useRecipeStore((state) => state.addRecipe);
+  const addRecipe = useRecipeStore((s) => s.addRecipe);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
 
   const handleSubmit = (event) => {
     event.preventDefault();
     if (!title.trim() || !description.trim()) return;
-    
-    addRecipe({ id: Date.now(), title, description });
+
+    addRecipe({ id: Date.now().toString(), title, description });
     setTitle('');
     setDescription('');
   };
