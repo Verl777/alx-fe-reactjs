@@ -8,22 +8,29 @@ const EditRecipeForm = ({ recipe }) => {
   const [description, setDescription] = useState(recipe?.description || '');
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = (event) => {
+    event.preventDefault(); // ✅ now explicitly uses "event"
     if (!title.trim() || !description.trim()) return;
+
     updateRecipe({ id: recipe.id, title, description });
-    // optionally navigate back or show a message; here we stay on details page
+    // optionally navigate somewhere else, for now stay on details page
   };
 
   return (
     <form onSubmit={handleSubmit}>
       <div>
         <label>Title</label>
-        <input value={title} onChange={(e) => setTitle(e.target.value)} />
+        <input
+          value={title}
+          onChange={(event) => setTitle(event.target.value)}
+        />
       </div>
       <div>
         <label>Description</label>
-        <textarea value={description} onChange={(e) => setDescription(e.target.value)} />
+        <textarea
+          value={description}
+          onChange={(event) => setDescription(event.target.value)}
+        />
       </div>
       <button type="submit">Save changes</button>
       <button type="button" onClick={() => navigate('/')}>Cancel</button>
