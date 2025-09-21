@@ -2,6 +2,7 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import Search from "./components/Search";
 
 function App() {
   const [count, setCount] = useState(0)
@@ -25,6 +26,10 @@ function App() {
           Edit <code>src/App.jsx</code> and save to test HMR
         </p>
       </div>
+      <div className="App">
+      <h1 className="text-2xl font-bold p-6 text-center">GitHub User Search</h1>
+      <Search />
+    </div>
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
