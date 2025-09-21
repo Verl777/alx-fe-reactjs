@@ -3,6 +3,7 @@ import { fetchUserData } from "../services/githubService";
 
 const Search = () => {
   const [username, setUsername] = useState("");
+  const [location, setLocation] = useState("");
   const [results, setResults] = useState([]); // array instead of null
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -14,7 +15,7 @@ const Search = () => {
     setResults([]);
 
     try {
-      const user = await fetchUserData(username);
+      const user = await fetchUserData(username,location);
       if (!user) {
         setError("Looks like we cant find the user");
       } else {
@@ -42,6 +43,13 @@ const Search = () => {
           placeholder="Username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
+          className="w-full p-2 border rounded"
+        />
+        <input
+          type="text"
+          placeholder="Location"
+          value={location}
+          onChange={(e) => setLocation(e.target.value)}
           className="w-full p-2 border rounded"
         />
         <button
