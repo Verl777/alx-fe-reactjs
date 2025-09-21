@@ -3,7 +3,7 @@ import { fetchUserData } from "../services/githubService";
 
 const Search = () => {
   const [username, setUsername] = useState("");
-  const [results, setResults] = useState(null);
+  const [results, setResults] = useState([]); // array instead of null
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -11,14 +11,15 @@ const Search = () => {
     e.preventDefault();
     setLoading(true);
     setError("");
-    setResults(null);
+    setResults([]);
 
     try {
       const user = await fetchUserData(username);
       if (!user) {
         setError("Looks like we cant find the user");
       } else {
-        setResults(user);
+        // wrap user in array so we can map it
+        setResults([user]);
       }
     } catch (err) {
       setError(err.message);
@@ -56,26 +57,31 @@ const Search = () => {
       {error && <p className="text-center mt-4 text-red-500">{error}</p>}
 
       {/* Results */}
-      {results && (
-        <div className="mt-6 flex items-center space-x-4 p-4 border rounded-lg shadow-sm">
-          <img
-            src={results.avatar_url}
-            alt={results.login}
-            className="w-16 h-16 rounded-full"
-          />
-          <div>
-            <h2 className="font-semibold">{results.login}</h2>
-            <a
-              href={results.html_url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-500 hover:underline"
-            >
-              View Profile
-            </a>
+      <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+        {results.map((user) => (
+          <div
+            key={user.id}
+            className="flex items-center space-x-4 p-4 border rounded-lg shadow-sm"
+          >
+            <img
+              src={user.avatar_url}
+              alt={user.login}
+              className="w-16 h-16 rounded-full"
+            />
+            <div>
+              <h2 className="font-semibold">{user.login}</h2>
+              <a
+                href={user.html_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-500 hover:underline"
+              >
+                View Profile
+              </a>
+            </div>
           </div>
-        </div>
-      )}
+        ))}
+      </div>
     </div>
   );
 };
