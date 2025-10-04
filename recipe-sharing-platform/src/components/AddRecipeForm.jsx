@@ -4,7 +4,7 @@ function AddRecipeForm() {
   const [title, setTitle] = useState("");
   const [ingredients, setIngredients] = useState("");
   const [steps, setSteps] = useState("");
-  const [errors, setErrors] = useState({}); // store errors here
+  const [errors, setErrors] = useState({});
 
   // Validation function
   const validate = () => {
@@ -38,7 +38,7 @@ function AddRecipeForm() {
     setErrors(validationErrors);
 
     if (Object.keys(validationErrors).length > 0) {
-      return; // stop if there are errors
+      return;
     }
 
     const newRecipe = {
@@ -60,16 +60,18 @@ function AddRecipeForm() {
   };
 
   return (
-    <div className="max-w-2xl mx-auto mt-8 p-6 bg-white shadow-lg rounded-xl">
-      <h2 className="text-2xl font-bold mb-4 text-center text-gray-800">Add a New Recipe</h2>
+    <div className="max-w-2xl mx-auto mt-8 p-6 bg-white shadow-lg rounded-xl md:p-10">
+      <h2 className="text-2xl font-bold mb-4 text-center text-gray-800 md:text-3xl">
+        Add a New Recipe
+      </h2>
 
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
         {/* Title */}
         <div>
           <label className="block text-gray-700 font-semibold">Recipe Title</label>
           <input
             type="text"
-            className="w-full border border-gray-300 rounded-lg px-3 py-2 mt-1 focus:ring-2 focus:ring-indigo-500"
+            className="w-full border border-gray-300 rounded-lg px-3 py-2 mt-1 focus:ring-2 focus:ring-indigo-500 md:py-3"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             placeholder="Enter recipe title"
@@ -81,7 +83,7 @@ function AddRecipeForm() {
         <div>
           <label className="block text-gray-700 font-semibold">Ingredients</label>
           <textarea
-            className="w-full border border-gray-300 rounded-lg px-3 py-2 mt-1 focus:ring-2 focus:ring-indigo-500"
+            className="w-full border border-gray-300 rounded-lg px-3 py-2 mt-1 focus:ring-2 focus:ring-indigo-500 md:py-3"
             rows="4"
             value={ingredients}
             onChange={(e) => setIngredients(e.target.value)}
@@ -94,7 +96,7 @@ function AddRecipeForm() {
         <div>
           <label className="block text-gray-700 font-semibold">Preparation Steps</label>
           <textarea
-            className="w-full border border-gray-300 rounded-lg px-3 py-2 mt-1 focus:ring-2 focus:ring-indigo-500"
+            className="w-full border border-gray-300 rounded-lg px-3 py-2 mt-1 focus:ring-2 focus:ring-indigo-500 md:py-3"
             rows="5"
             value={steps}
             onChange={(e) => setSteps(e.target.value)}
@@ -106,7 +108,7 @@ function AddRecipeForm() {
         {/* Submit Button */}
         <button
           type="submit"
-          className="w-full bg-indigo-600 text-white py-2 px-4 rounded-lg hover:bg-indigo-700 transition"
+          className="w-full bg-indigo-600 text-white py-2 px-4 rounded-lg hover:bg-indigo-700 transition md:py-3"
         >
           Add Recipe
         </button>
